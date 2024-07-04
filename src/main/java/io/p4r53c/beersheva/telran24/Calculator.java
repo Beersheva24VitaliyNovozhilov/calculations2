@@ -106,8 +106,8 @@ public class Calculator {
     /**
      * Returns the maximum digit of an integer.
      * 
-     * AUTHOR COMMENT: This is strage task. I think that kind of tasks usually have for arrys.
-     * This methos uses unboxing and classcasting.
+     * AUTHOR COMMENT: This is strange task. I think that kind of tasks usually have for arrays.
+     * This methods uses unboxing and classcasting.
      * 
      *
      * @param a integer
