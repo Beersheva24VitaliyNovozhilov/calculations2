@@ -106,8 +106,8 @@ class CalculatorTest {
     }
 
     @Test
-    void testSqrtZero() {
-        assertEquals(0, Calculator.sqrt(0));
+    void testSqrtNonIntegerValue() {
+        assertEquals(1.4142135623730951, Calculator.sqrt(2));
     }
 
     @Test

@@ -98,9 +98,9 @@ public class Calculator {
      * @param a integer
      * @return square root of a
      */
-    public static int sqrt(int a) {
+    public static double sqrt(int a) {
         logger.info("The square root of {} is {}", a, Math.sqrt(a));
-        return (int) Math.sqrt(a);
+        return Math.sqrt(a);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Calculator {
                 maxDigit = currentDigit;
             }
         }
-        logger.info(number + " has max digit " + maxDigit);
+        logger.info("{} has max digit {}", number, maxDigit);
         return maxDigit;
     }
 
@@ -152,7 +152,7 @@ public class Calculator {
 
             a /= 10;
         }
-        logger.info(Integer.toString(a) + " has max digit " + maxDigit);
+        logger.info("{} has max digit {}", a, maxDigit);
         return maxDigit;
     }
 
