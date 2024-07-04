@@ -131,6 +131,11 @@ class CalculatorTest {
     }
 
     @Test
+    void testMaxDigitsByModZeroNumber() {
+        assertEquals(0, Calculator.maxDigitByMod(0));
+    }
+
+    @Test
     void testMaxDigitsByModNegativeNumber() {
         assertEquals(9, Calculator.maxDigitByMod(-789));
     }

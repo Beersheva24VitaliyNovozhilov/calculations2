@@ -137,9 +137,8 @@ public class Calculator {
      *
      * @param a integer
      * @return maximum digit of a
-     * @throws ArithmeticException if a is zero
      */
-    public static int maxDigitByMod(int a) throws ArithmeticException {
+    public static int maxDigitByMod(int a) {
         a = Math.abs(a);
 
         int maxDigit = 0;
