@@ -64,8 +64,8 @@ class CalculatorTest {
 
     @Test
     void testPowerForNegativeValues() {
-        assertEquals(0.0, Calculator.power(2, -3));
-        assertEquals(0.0, Calculator.power(2, -4));
+        assertEquals(0.125, Calculator.power(2, -3));
+        assertEquals(0.0625, Calculator.power(2, -4));
     }
 
     @Test
@@ -153,14 +153,14 @@ class CalculatorTest {
     }
 
     @Test
-    public void testIsDividedOnNonDivisible() {
+    void testIsDividedOnNonDivisible() {
         assertFalse(Calculator.isDividedOn(10, 3));
         assertFalse(Calculator.isDividedOn(12, 5));
         assertFalse(Calculator.isDividedOn(15, 7));
     }
 
     @Test
-    public void testIsDividedOnThrowsArithmeticException() {
+    void testIsDividedOnThrowsArithmeticException() {
         assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(10, 0));
         assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(12, 0));
         assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(15, 0));

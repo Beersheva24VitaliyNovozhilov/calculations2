@@ -74,9 +74,9 @@ public class Calculator {
      * @param b exponent
      * @return a raised to the b-th power
      */
-    public static int power(int a, int b) {
+    public static double power(int a, int b) {
         logger.info("The power of {} and {} is {}", a, b, Math.pow(a, b));
-        return (int) Math.pow(a, b);
+        return Math.pow(a, b);
     }
 
     /**
