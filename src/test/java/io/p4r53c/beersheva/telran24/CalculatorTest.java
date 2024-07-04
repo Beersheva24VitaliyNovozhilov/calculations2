@@ -33,7 +33,6 @@ class CalculatorTest {
         assertEquals(2, result);
     }
 
-
     @Test
     void testDividePositiveIntegers() {
         assertEquals(2, Calculator.divide(6, 3));
@@ -148,22 +147,22 @@ class CalculatorTest {
 
     @Test
     void testIsDividedOnDivisibleNumbers() {
-    assertTrue(Calculator.isDividedOn(10, 2));
-    assertTrue(Calculator.isDividedOn(12, 3));
-    assertTrue(Calculator.isDividedOn(15, 5));
-}
+        assertTrue(Calculator.isDividedOn(10, 2));
+        assertTrue(Calculator.isDividedOn(12, 3));
+        assertTrue(Calculator.isDividedOn(15, 5));
+    }
 
-@Test
-public void testIsDividedOnNonDivisible() {
-    assertFalse(Calculator.isDividedOn(10, 3));
-    assertFalse(Calculator.isDividedOn(12, 5));
-    assertFalse(Calculator.isDividedOn(15, 7));
-}
+    @Test
+    public void testIsDividedOnNonDivisible() {
+        assertFalse(Calculator.isDividedOn(10, 3));
+        assertFalse(Calculator.isDividedOn(12, 5));
+        assertFalse(Calculator.isDividedOn(15, 7));
+    }
 
-@Test
-public void testIsDividedOnThrowsArithmeticException() {
-    assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(10, 0));
-    assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(12, 0));
-    assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(15, 0));
-}
+    @Test
+    public void testIsDividedOnThrowsArithmeticException() {
+        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(10, 0));
+        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(12, 0));
+        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(15, 0));
+    }
 }
