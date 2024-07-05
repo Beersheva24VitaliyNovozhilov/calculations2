@@ -151,6 +151,26 @@ class CalculatorTest {
     }
 
     @Test
+    public void testSumOfDigits_zero() {
+        assertEquals(0, Calculator.sumOfDigits(0));
+    }
+
+    @Test
+    void testSumOfDigitsSingleDigit() {
+        assertEquals(5, Calculator.sumOfDigits(5));
+    }
+
+    @Test
+    void testSumOfDigitsMultipleDigits() {
+        assertEquals(6, Calculator.sumOfDigits(123));
+    }
+
+    @Test
+    void testSumOfDigitsNegativeNumber() {
+        assertEquals(5, Calculator.sumOfDigits(-123));
+    }
+
+    @Test
     void testIsDividedOnDivisibleNumbers() {
         assertTrue(Calculator.isDividedOn(10, 2));
         assertTrue(Calculator.isDividedOn(12, 3));

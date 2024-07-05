@@ -106,7 +106,8 @@ public class Calculator {
     /**
      * Returns the maximum digit of an integer.
      * 
-     * AUTHOR COMMENT: This is strange task. I think that kind of tasks usually have for arrays.
+     * AUTHOR COMMENT: This is strange task. I think that kind of tasks usually have
+     * for arrays.
      * This methods uses unboxing and classcasting.
      * 
      *
@@ -131,7 +132,7 @@ public class Calculator {
     /**
      * Returns the maximum digit of an integer by modulo division.
      * 
-     * AUTHOR COMMENT: This is a more mathematical way. 
+     * AUTHOR COMMENT: This is a more mathematical way.
      * Mark Kazhdan suggested.
      * I added absolute value extraction to support negative values.
      *
@@ -157,10 +158,36 @@ public class Calculator {
     }
 
     /**
+     * Calculates the sum of the digits of an integer.
+     * 
+     * I noticed that I forgot to implement this maxDigit-like method.
+     * I decided to implement it differently than previous solutions using the Java
+     * Stream API
+     * and simple mapping.
+     * 
+     * @see java.util.stream.IntStream.map
+     *
+     * @param number the integer whose digits are to be summed
+     * @return the sum of the digits of the integer
+     * 
+     * @since 1.2
+     * 
+     */
+    public static int sumOfDigits(int number) {
+        int result = String.valueOf(number)
+                .chars()
+                .map(Character::getNumericValue)
+                .sum();
+
+        logger.info("Sum of digits of {} is {}", number, result);
+        return result;
+    }
+
+    /**
      * Returns true if a is divisible by b, false otherwise.
      *
-     * @param number   integer to be tested
-     * @param dividor  potential divisor
+     * @param number  integer to be tested
+     * @param dividor potential divisor
      * @return true if a is divisible by b, false otherwise
      * @throws ArithmeticException if b is zero
      */
