@@ -1,5 +1,7 @@
 package io.p4r53c.beersheva.telran24;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -106,33 +108,31 @@ public class Calculator {
     /**
      * Returns the maximum digit of an integer.
      * 
-     * AUTHOR COMMENT: This is strange task. I think that kind of tasks usually have
-     * for arrays.
-     * This methods uses unboxing and classcasting.
+     * New method with Stream API.
      * 
-     *
      * @param a integer
      * @return maximum digit of a
      */
     public static int maxDigit(int a) {
-        String number = Integer.toString(a);
-        int maxDigit = 0;
+        String numberString = Integer.toString(a);
 
-        for (int i = 0; i < number.length(); i++) {
-            int currentDigit = Character.getNumericValue(number.charAt(i));
-
-            if (currentDigit > maxDigit) {
-                maxDigit = currentDigit;
-            }
+        if (numberString.startsWith("-")) {
+            numberString = numberString.substring(1);
         }
-        logger.info("{} has max digit {}", number, maxDigit);
-        return maxDigit;
+
+        int result = Arrays.stream(numberString.split(""))
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(0);
+
+        logger.info("{} has max digit {}", a, result);
+        return result;
     }
 
     /**
      * Returns the maximum digit of an integer by modulo division.
      * 
-     * AUTHOR COMMENT: This is a more mathematical way.
+     * This is a more mathematical way.
      * Mark Kazhdan suggested.
      * I added absolute value extraction to support negative values.
      *
@@ -153,7 +153,7 @@ public class Calculator {
 
             a /= 10;
         }
-        logger.info("{} has max digit {}", a, maxDigit);
+        logger.info("{} has max digit (modulo division method) {}", a, maxDigit);
         return maxDigit;
     }
 
@@ -162,24 +162,36 @@ public class Calculator {
      * 
      * I noticed that I forgot to implement this maxDigit-like method.
      * I decided to implement it differently than previous solutions using the Java
-     * Stream API
-     * and simple mapping.
+     * Stream API and simple mapping.
+     * 
+     * Fixed implementation of this method.
+     * The "-" char is not counted as a digit anymore in the stream.
      * 
      * @see java.util.stream.IntStream.map
      *
-     * @param number the integer whose digits are to be summed
+     * @param a the integer whose digits are to be summed
      * @return the sum of the digits of the integer
      * 
      * @since 1.2
      * 
      */
-    public static int sumOfDigits(int number) {
-        int result = String.valueOf(number)
+
+    public static int sumOfDigits(int a) {
+        boolean isNegative = a < 0;
+
+        int originNumber = a;
+
+        a = Math.abs(a);
+
+        int sum = String.valueOf(a)
                 .chars()
                 .map(Character::getNumericValue)
                 .sum();
 
-        logger.info("Sum of digits of {} is {}", number, result);
+        int result = isNegative ? sum - 2 * Character.getNumericValue(Integer.toString(a)
+                .charAt(0)) : sum;
+
+        logger.info("Sum of digits of {} is {}", originNumber, result);
         return result;
     }
 
@@ -188,10 +200,18 @@ public class Calculator {
      *
      * @param number  integer to be tested
      * @param dividor potential divisor
-     * @return true if a is divisible by b, false otherwise
-     * @throws ArithmeticException if b is zero
+     * @return true if a is divisible by b, false otherwise, or if b is zero
+     * 
      */
-    public static boolean isDividedOn(int number, int dividor) throws ArithmeticException {
+    public static boolean isDividedOn(int number, int dividor) {
+
+        // Tests can catch ArithmeticException, but users of the method cannot.
+        // This cannot be tracked without this check.
+        if (dividor == 0) {
+            logger.info("Is {} divideble on {}? {}", number, dividor, "false");
+            return false;
+        }
+
         logger.info("Is {} divideble on {}? {}", number, dividor, number % dividor == 0);
         return number % dividor == 0;
     }

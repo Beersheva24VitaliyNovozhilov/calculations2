@@ -151,7 +151,7 @@ class CalculatorTest {
     }
 
     @Test
-    public void testSumOfDigits_zero() {
+    void testSumOfDigitsZero() {
         assertEquals(0, Calculator.sumOfDigits(0));
     }
 
@@ -167,7 +167,9 @@ class CalculatorTest {
 
     @Test
     void testSumOfDigitsNegativeNumber() {
-        assertEquals(5, Calculator.sumOfDigits(-123));
+        assertEquals(4, Calculator.sumOfDigits(-123));
+        assertEquals(14, Calculator.sumOfDigits(-12328));
+        assertEquals(20, Calculator.sumOfDigits(-67298));
     }
 
     @Test
@@ -182,12 +184,6 @@ class CalculatorTest {
         assertFalse(Calculator.isDividedOn(10, 3));
         assertFalse(Calculator.isDividedOn(12, 5));
         assertFalse(Calculator.isDividedOn(15, 7));
-    }
-
-    @Test
-    void testIsDividedOnThrowsArithmeticException() {
-        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(10, 0));
-        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(12, 0));
-        assertThrows(ArithmeticException.class, () -> Calculator.isDividedOn(15, 0));
+        assertFalse(Calculator.isDividedOn(15, 0));
     }
 }
