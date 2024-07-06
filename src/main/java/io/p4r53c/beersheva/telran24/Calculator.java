@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * Class that provides a set of mathematical operations.
  * 
  * @author p4r53c
- * @version 1.0
+ * @version 2.0
  * 
  */
 public class Calculator {
@@ -38,10 +38,23 @@ public class Calculator {
      * @param a dividend
      * @param b divisor
      * @return division of a by b
+     * 
+     * @throws ArithmeticException if the divisor is zero
      */
     public static int divide(int a, int b) {
-        logger.info("The division of {} and {} is {}", a, b, a / b);
-        return a / b;
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+
+        int result = 0;
+
+        try {
+            result = a / b;
+        } catch (ArithmeticException e) {
+            logger.error("Caught ArithmeticException: {}", e.getMessage());
+            throw new ArithmeticException();
+        }
+
+        logger.info("The division of {} and {} is {}", a, b, result);
+        return result;
     }
 
     /**
@@ -87,10 +100,23 @@ public class Calculator {
      * @param b divisor
      * @return remainder of a divided by b
      * 
+     * @throws ArithmeticException if the divisor is zero
+     * 
      */
     public static int mod(int a, int b) {
-        logger.info("The mod of {} and {} is {}", a, b, a % b);
-        return a % b;
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+
+        int result = 0;
+
+        try {
+            result = a % b;
+        } catch (ArithmeticException e) {
+            logger.error("Caught ArithmeticException: {}", e.getMessage());
+            throw new ArithmeticException();
+        }
+
+        logger.info("The mod of {} and {} is {}", a, b, result);
+        return result;
     }
 
     /**
@@ -203,16 +229,19 @@ public class Calculator {
      * 
      */
     public static boolean isDividedOn(int number, int dividor) {
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
 
-        // Tests can catch ArithmeticException, but users of the method cannot.
-        // This cannot be tracked without this check.
-        if (dividor == 0) {
-            logger.info("Is {} divideble on {}? {}", number, dividor, "false");
+        boolean result;
+
+        try {
+            result = number % dividor == 0;
+        } catch (ArithmeticException e) {
+            logger.error("Returning [False]! Caught ArithmeticException: {}", e.getMessage());
             return false;
         }
 
-        logger.info("Is {} divideble on {}? {}", number, dividor, number % dividor == 0);
-        return number % dividor == 0;
+        logger.info("The division of {} and {} is {}", number, dividor, result);
+        return result;
     }
 
 }

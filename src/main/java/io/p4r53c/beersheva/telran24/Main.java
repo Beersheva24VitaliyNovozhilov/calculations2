@@ -12,14 +12,5 @@ public class Main {
 
         logger.info("Hello world!");
 
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-        // testDivideByZero(); There is an unchecked exception in the divide method.
-        // Iam catch it and log the error message.
-        try {
-            int result = Calculator.divide(10, 0);
-            logger.info("No exception in divide method, result: {}", result);
-        } catch (ArithmeticException e) {
-            logger.error("Caught ArithmeticException: {}", e.getMessage());
-        }
     }
 }
