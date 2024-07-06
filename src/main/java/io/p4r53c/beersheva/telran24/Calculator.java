@@ -38,9 +38,8 @@ public class Calculator {
      * @param a dividend
      * @param b divisor
      * @return division of a by b
-     * @throws ArithmeticException if b is zero
      */
-    public static int divide(int a, int b) throws ArithmeticException {
+    public static int divide(int a, int b) {
         logger.info("The division of {} and {} is {}", a, b, a / b);
         return a / b;
     }
@@ -87,9 +86,9 @@ public class Calculator {
      * @param a dividend
      * @param b divisor
      * @return remainder of a divided by b
-     * @throws ArithmeticException if b is zero
+     * 
      */
-    public static int mod(int a, int b) throws ArithmeticException {
+    public static int mod(int a, int b) {
         logger.info("The mod of {} and {} is {}", a, b, a % b);
         return a % b;
     }
