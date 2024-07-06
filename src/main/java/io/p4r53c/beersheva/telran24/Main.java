@@ -17,9 +17,9 @@ public class Main {
         // Iam catch it and log the error message.
         try {
             int result = Calculator.divide(10, 0);
-            logger.error("No exception in divide method, result: {}", result);
+            logger.info("No exception in divide method, result: {}", result);
         } catch (ArithmeticException e) {
-            logger.error("Caught ArithmeticException: divided {}", e.getMessage());
+            logger.error("Caught ArithmeticException: {}", e.getMessage());
         }
     }
 }
