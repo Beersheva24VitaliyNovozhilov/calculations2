@@ -167,9 +167,9 @@ class CalculatorTest {
 
     @Test
     void testSumOfDigitsNegativeNumber() {
-        assertEquals(4, Calculator.sumOfDigits(-123));
-        assertEquals(14, Calculator.sumOfDigits(-12328));
-        assertEquals(20, Calculator.sumOfDigits(-67298));
+        assertEquals(6, Calculator.sumOfDigits(-123));
+        assertEquals(16, Calculator.sumOfDigits(-12328));
+        assertEquals(32, Calculator.sumOfDigits(-67298));
     }
 
     @Test

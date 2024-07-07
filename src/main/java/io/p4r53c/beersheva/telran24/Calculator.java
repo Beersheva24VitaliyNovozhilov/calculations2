@@ -1,8 +1,6 @@
 package io.p4r53c.beersheva.telran24;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -187,7 +185,11 @@ public class Calculator {
     /**
      * Calculates the sum of the digits of an integer.
      * 
-     * New method with ArrayList.
+     * Correct implementation.
+     * 
+     * "-123 != 123 these are the different numbers but they have the same digits 
+     * it means for the task sumOfDigits -123 has the same digits that 123 that means 
+     * that sumOfDigits(123) == sumOfDigits(-123)".
      *
      * @param a the integer whose digits are to be summed
      * @return the sum of the digits of the integer
@@ -195,45 +197,17 @@ public class Calculator {
      * @since 2.0
      * 
      */
-
     public static int sumOfDigits(int a) {
-        int abs = Math.abs(a);
-
-        List<Integer> digits = new ArrayList<>();
-
-        while (abs > 0) {
-            int digit = abs % 10;
-            digits.add(0, digit);
-            abs /= 10;
-        }
-
-        if (a < 0) {
-            digits.set(0, -digits.get(0));
-        }
-
+        a = Math.abs(a);
         int sum = 0;
-        for (int digit : digits) {
-            sum += digit;
+
+        while (a > 0) {
+            sum += a % 10;
+            a /= 10;
         }
 
-        logger.info("{} has sum of digits {}", a, sum);
         return sum;
     }
-    /*
-    * This implementation looks like simple and works, but it doesn't.
-    * This method works for -9325 -12328 -67298 but not for -123.
-    *
-    *   public static int sumOfDigits(int a) {
-    *       int sum = 0;
-    *
-    *       while (a != 0) {
-    *           sum += a % 10;
-    *           a /= 10;
-    *       }
-    *
-    *       return sum;
-    *   }
-    */
 
     /**
      * Returns true if a is divisible by b, false otherwise.
