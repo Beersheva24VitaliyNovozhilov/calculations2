@@ -205,7 +205,8 @@ public class Calculator {
             sum += a % 10;
             a /= 10;
         }
-
+        
+        logger.info(null, "The sum of the digits of {} is {}", a, sum);
         return sum;
     }
 
