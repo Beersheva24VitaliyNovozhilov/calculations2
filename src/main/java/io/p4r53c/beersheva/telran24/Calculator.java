@@ -1,6 +1,8 @@
 package io.p4r53c.beersheva.telran24;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -185,62 +187,71 @@ public class Calculator {
     /**
      * Calculates the sum of the digits of an integer.
      * 
-     * I noticed that I forgot to implement this maxDigit-like method.
-     * I decided to implement it differently than previous solutions using the Java
-     * Stream API and simple mapping.
-     * 
-     * Fixed implementation of this method.
-     * The "-" char is not counted as a digit anymore in the stream.
-     * 
-     * @see java.util.stream.IntStream.map
+     * New method with ArrayList.
      *
      * @param a the integer whose digits are to be summed
      * @return the sum of the digits of the integer
      * 
-     * @since 1.2
+     * @since 2.0
      * 
      */
 
     public static int sumOfDigits(int a) {
-        boolean isNegative = a < 0;
+        int abs = Math.abs(a);
 
-        int originNumber = a;
+        List<Integer> digits = new ArrayList<>();
 
-        a = Math.abs(a);
+        while (abs > 0) {
+            int digit = abs % 10;
+            digits.add(0, digit);
+            abs /= 10;
+        }
 
-        int sum = String.valueOf(a)
-                .chars()
-                .map(Character::getNumericValue)
-                .sum();
+        if (a < 0) {
+            digits.set(0, -digits.get(0));
+        }
 
-        int result = isNegative ? sum - 2 * Character.getNumericValue(Integer.toString(a)
-                .charAt(0)) : sum;
+        int sum = 0;
+        for (int digit : digits) {
+            sum += digit;
+        }
 
-        logger.info("Sum of digits of {} is {}", originNumber, result);
-        return result;
+        logger.info("{} has sum of digits {}", a, sum);
+        return sum;
     }
+    /*
+    * This implementation looks like simple and works, but it doesn't.
+    * This method works for -9325 -12328 -67298 but not for -123.
+    *
+    *   public static int sumOfDigits(int a) {
+    *       int sum = 0;
+    *
+    *       while (a != 0) {
+    *           sum += a % 10;
+    *           a /= 10;
+    *       }
+    *
+    *       return sum;
+    *   }
+    */
 
     /**
      * Returns true if a is divisible by b, false otherwise.
      *
-     * @param number  integer to be tested
-     * @param dividor potential divisor
+     * @param a integer to be tested
+     * @param b potential divisor
      * @return true if a is divisible by b, false otherwise, or if b is zero
      * 
      */
-    public static boolean isDividedOn(int number, int dividor) {
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-
-        boolean result;
-
-        try {
-            result = number % dividor == 0;
-        } catch (ArithmeticException e) {
-            logger.error("Returning [False]! Caught ArithmeticException: {}", e.getMessage());
+    public static boolean isDividedOn(int a, int b) {
+        if (b == 0) {
+            logger.error("isDividedOn() / by zero!");
             return false;
         }
 
-        logger.info("The division of {} and {} is {}", number, dividor, result);
+        boolean result = a % b == 0;
+
+        logger.info("The division of {} and {} is {}", a, b, result);
         return result;
     }
 
